@@ -1,0 +1,51 @@
+.Card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 16.87vw;
+    height: 15.46vh;
+    background-color: rgba(122, 199, 76, 0.1);
+    border-radius: 0.7vw;
+    font-size: 0.83vw;
+   
+}
+.pokeInfo{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin-left:2em ;
+}
+
+.pokeInfo h3{
+    font-size: 1.5em;
+    font-weight: 700;
+    margin: 0;
+}
+
+.pokeInfo p{
+    margin: 0.5em 0 0.2em 0;
+    
+}
+.pokeInfo span {
+    font-size: 0.8em;
+    color: white;
+    font-weight: 600;
+    padding:0.4em 0.7em;
+    border-radius: 17vw;   
+  }
+  /* Para a condicional (pokemon 1 com a imagem muito pequena) */
+
+.pokeImg1{
+    width: 100%;
+    height: auto;
+    margin-left: 1em;
+    transform: scale(1.5);
+}
+
+/* fim da condicional */
+
+.pokeImg{
+    width: 100%;
+    height: auto;
+    margin-left: 1em;
+}
