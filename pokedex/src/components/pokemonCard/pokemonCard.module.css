@@ -52,7 +52,7 @@
 
 /* RESPONSIVO */
 
-@media (min-width:375px) and (max-width: 950px){
+@media (min-width:405px) and (max-width: 950px){
     .Card{
         width: 60.61vw;
         height: 20%;
@@ -63,8 +63,9 @@
         margin-left:4em;
     }
     .pokeInfo h3{
-        font-size: 4.5rem;
+        font-size: 4rem;
         margin-bottom:0.3em;
+        font-weight: 600;
     }
     .pokeInfo p{
         margin: 2em 0;
