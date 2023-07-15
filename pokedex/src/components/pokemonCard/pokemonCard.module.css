@@ -49,3 +49,45 @@
     height: auto;
     margin-left: 1em;
 }
+
+/* RESPONSIVO */
+
+@media (min-width:375px) and (max-width: 950px){
+    .Card{
+        width: 60.61vw;
+        height: 20%;
+    }
+
+    .pokeInfo{
+        height:70%;
+        margin-left:4em;
+    }
+    .pokeInfo h3{
+        font-size: 4.5rem;
+        margin-bottom:0.3em;
+    }
+    .pokeInfo p{
+        margin: 2em 0;
+    }
+    .pokeInfo span {
+        font-size: 2.8em;
+        color: white;  
+    }
+
+     /* Para a condicional (pokemon 1 com a imagem muito pequena) */
+
+    .pokeImg1{
+        width: 50%;
+        height: auto;
+    }
+
+    /* fim da condicional */
+
+    .pokeImg{
+        width: 50%;
+        height: auto;
+    }
+
+
+
+}
