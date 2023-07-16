@@ -2,11 +2,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 16.87vw;
-    height: 15.46vh;
+    width: 20em;
+    padding-bottom: 1.5em;
     background-color: rgba(122, 199, 76, 0.1);
     border-radius: 0.7vw;
-    font-size: 0.83vw;
+    font-size: 1em;
    
 }
 .pokeInfo{
@@ -52,72 +52,77 @@
 
 /* RESPONSIVE */
 
-@media (min-width:405px) and (max-width: 950px){
+@media (min-width:610px) and (max-width: 1100px){
     .Card{
-        width: 60.61vw;
-        height: 20%;
+        width: 100%;
+        height: 15em;
+        max-width: 500px;
         overflow: hidden;
+        min-width: 490px;
     }
 
     .pokeInfo{
-        height:70%;
+        height:60%;
         margin-left:4em;
     }
     .pokeInfo h3{
-        font-size: 4rem;
+        font-size: 2rem;
         margin-bottom:0.3em;
-        font-weight: 600;
     }
     .pokeInfo p{
-        margin: 2em 0;
+        margin: 1em 0;
     }
     .pokeInfo span {
-        font-size: 2.8em;
+        font-size: 1.5em;
         color: white;  
     }
 
      /* Para a condicional (pokemon 1 com a imagem muito pequena) */
 
     .pokeImg1{
-        width: 50%;
+        width: 100%;
         height: auto;
+        transform: scale(2);
     }
 
     /* fim da condicional */
 
     .pokeImg{
-        width: 50%;
+        width: 100%;
+        max-width: 250px;
         height: auto;
+        transform: scale(1.5);
     }
 
 }
 
-@media (max-width: 404px){
+@media (max-width: 610px){
     .Card{
+        width: 70%;
+        height: 9em;
+        min-width: 265px;
+        max-width: 275px;
         justify-content: flex-start;
-        width: 80.61vw;
-        height: 14vh;
-        padding: 1.3em 1.3em 2em 1.3em;
+        padding: 0 1.3em 2em 0em;
         overflow: hidden;
         border-radius: 7vw;
     }
 
     .pokeInfo{
-        margin-left:4em;
+        margin-left:0.2em;
         height: 70%;
         padding-left: 1.7em;
     }
     .pokeInfo h3{
-        font-size: 6rem;
-        font-weight: 600;
-        margin-bottom:0.3em;
+        font-size: 1.5em;
+        margin-bottom: 0.2em;
     }
     .pokeInfo p{
-        margin: 2em 0;
+        margin: 0.5em 0;
     }
     .pokeInfo span {
         font-weight: 400;
-        font-size: 2.8em;
+        font-size: 0.8em;
     }
 
      /* Para a condicional (pokemon 1 com a imagem muito pequena) */
@@ -125,7 +130,7 @@
     .pokeImg1{
         width: 50%;
         height: auto;
-        transform: scale(2);
+        transform: scale(2.5);
         overflow: hidden;
     }
 
@@ -134,7 +139,8 @@
     .pokeImg{
         width: 50%;
         height: auto;
-        transform: scale(1.5);
+        max-width: 100px;
+        transform: scale(2);
     }
 
 }

@@ -29,9 +29,8 @@ export default function Home() {
       <button className={styles.searchButton}><img src="/img/searchIcon.svg" alt="searchIcon.svg" /></button>
       </div>
 
-      
+      <h1>Pokedex</h1>
       <main>
-        <h1>Pokedex</h1>
         <div className={styles.cards}>
           {[...Array(27)].map((_, i) => (
             <PokemonCard key={i} pokemon={pokemon} />

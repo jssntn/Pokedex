@@ -7,8 +7,8 @@
 }
 
 .wrapper h1{
-    align-self: flex-start;
-    margin:  0 2vw 2vw 4.2vw;
+    width: 53.7vw;
+    margin:0;
     font-size: 3em;
 }
 .logo{
@@ -74,16 +74,15 @@
 
 /* RESPONSIVE */
 
-@media (min-width:405px) and (max-width: 950px){
+@media (min-width:405px) and (max-width: 1100px){
     .wrapper{
         gap:2vh;
     }
     
     .wrapper h1{
-        font-size: 5em;
         margin-left: 0.2vw;
         text-align: center;
-        margin-bottom: 4vh;
+        margin-bottom: 2vh;
     }
     .search{
         display: flex;
@@ -92,7 +91,7 @@
     }
     .searchInput{
         width: 55vw;
-        font-size: 2.5em;
+        font-size: 1.5em;
     }
     
     .cards{
@@ -100,15 +99,17 @@
     }
 
     .wrapper footer{
-        font-size: 2.5em;
+        font-size: 1.5em;
         font-weight: 500;
     }
 }
 
-@media (max-width: 404px){
+@media (max-width: 610px){
     .wrapper{
         align-items: center;
+        justify-content: center;
         gap:2vh;
+        min-width: 320px;
     }
     .logo{
         width: 40px;
@@ -120,7 +121,8 @@
         height: 5vh;
     }
     .wrapper h1{
-        font-size: 14em;
+        
+        width: 100%;
         margin: 0 0 2vh 0 ;
         text-align: center;
         
@@ -128,7 +130,7 @@
     .searchInput{
         height: 5vh;
         width: 62vw;
-        font-size: 3.5em;
+        font-size: 1.5em;
         padding: 0 1em;
         border-radius: 2vw;
         border-top-right-radius: 0;
@@ -144,12 +146,12 @@
         padding: 0;
     }
     .cards{
-        width: 80vw;
+        width:100%;
         gap:3.2vh;   
     }
 
     .wrapper footer{
-        font-size: 4.5em;
+        font-size: 1.5em;
         font-weight: 500;
         margin: 3vh 0;
     }
