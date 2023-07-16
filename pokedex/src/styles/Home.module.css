@@ -71,6 +71,8 @@
     margin: 5vh 0;
 }
 
+/* RESPONSIVE */
+
 @media (min-width:405px) and (max-width: 950px){
     .wrapper{
         gap:2vh;
@@ -102,5 +104,14 @@
     .wrapper footer{
         font-size: 2.5em;
         font-weight: 500;
+    }
+}
+
+@media (max-width: 404px){
+    .wrapper{
+        align-items: center;
+    }
+    .cards{
+        width: 80vw;   
     }
 }

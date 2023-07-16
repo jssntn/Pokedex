@@ -10,9 +10,9 @@ const inter = Inter({ subsets: ['latin'] })
 // testes componente Card
 
 const pokemon:Pokemon = {
-  idPokemon: 1,
+  idPokemon: 2,
   name: "Bulbasaur",
-  img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+  img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png",
   types: ["GRASS", "POISON"],
   isFavorite: false
 }

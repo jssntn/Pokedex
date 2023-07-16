@@ -50,12 +50,13 @@
     margin-left: 1em;
 }
 
-/* RESPONSIVO */
+/* RESPONSIVE */
 
 @media (min-width:405px) and (max-width: 950px){
     .Card{
         width: 60.61vw;
         height: 20%;
+        overflow: hidden;
     }
 
     .pokeInfo{
@@ -89,6 +90,50 @@
         height: auto;
     }
 
+}
 
+@media (max-width: 404px){
+    .Card{
+        justify-content: flex-start;
+        width: 80.61vw;
+        height: 20%;
+        padding: 1.3em;
+        overflow: hidden;
+        border-radius: 7vw;
+    }
+
+    .pokeInfo{
+        margin-left:4em;
+    }
+    .pokeInfo h3{
+        font-size: 6rem;
+        font-weight: 600;
+        margin-bottom:0.3em;
+    }
+    .pokeInfo p{
+        margin: 2em 0;
+    }
+    .pokeInfo span {
+        font-weight: 400;
+        font-size: 2.8em;
+        color: white;  
+    }
+
+     /* Para a condicional (pokemon 1 com a imagem muito pequena) */
+
+    .pokeImg1{
+        width: 50%;
+        height: auto;
+        transform: scale(2);
+        overflow: hidden;
+    }
+
+    /* fim da condicional */
+
+    .pokeImg{
+        width: 50%;
+        height: auto;
+        transform: scale(1.5);
+    }
 
 }
