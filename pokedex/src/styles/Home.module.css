@@ -112,6 +112,7 @@
         align-items: center;
     }
     .cards{
-        width: 80vw;   
+        width: 80vw;
+        gap:3.2vh;   
     }
 }

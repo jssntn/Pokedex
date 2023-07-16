@@ -96,14 +96,16 @@
     .Card{
         justify-content: flex-start;
         width: 80.61vw;
-        height: 20%;
-        padding: 1.3em;
+        height: 14vh;
+        padding: 1.3em 1.3em 2em 1.3em;
         overflow: hidden;
         border-radius: 7vw;
     }
 
     .pokeInfo{
         margin-left:4em;
+        height: 70%;
+        padding-left: 1.7em;
     }
     .pokeInfo h3{
         font-size: 6rem;
