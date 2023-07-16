@@ -8,12 +8,13 @@
 
 .wrapper h1{
     align-self: flex-start;
-    margin-left: 3.2vw;
+    margin:  0 2vw 2vw 4.2vw;
     font-size: 3em;
 }
 .logo{
     width: 40px;
-    height: auto;
+    height: 50px;
+    border-radius: 100%;
 }
 .search{
     display: flex;
@@ -77,10 +78,7 @@
     .wrapper{
         gap:2vh;
     }
-    .logo{
-        width: 70px;
-        height: auto;
-    }
+    
     .wrapper h1{
         font-size: 5em;
         margin-left: 0.2vw;
@@ -110,9 +108,49 @@
 @media (max-width: 404px){
     .wrapper{
         align-items: center;
+        gap:2vh;
+    }
+    .logo{
+        width: 40px;
+        height: 50px;
+        border-radius: 100%;
+    }
+    .search{
+        width: 77.7vw;
+        height: 5vh;
+    }
+    .wrapper h1{
+        font-size: 14em;
+        margin: 0 0 2vh 0 ;
+        text-align: center;
+        
+    }
+    .searchInput{
+        height: 5vh;
+        width: 62vw;
+        font-size: 3.5em;
+        padding: 0 1em;
+        border-radius: 2vw;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+    .searchButton{
+        min-height: 5vh;
+        width: 14.7vw;
+        border-radius: 2vw;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        margin:0;
+        padding: 0;
     }
     .cards{
         width: 80vw;
         gap:3.2vh;   
+    }
+
+    .wrapper footer{
+        font-size: 4.5em;
+        font-weight: 500;
+        margin: 3vh 0;
     }
 }
