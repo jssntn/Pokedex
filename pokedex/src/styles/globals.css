@@ -14,3 +14,7 @@ html, body{
   cursor: default;
   /* overflow-y: auto; */
 }
+#__next{
+  height: 100%;
+  width: 100%;
+}
