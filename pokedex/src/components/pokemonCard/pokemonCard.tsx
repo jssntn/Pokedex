@@ -14,7 +14,7 @@ export default function PokemonCard(props:pokemonCardProps){
         BUG: 'rgb(238, 129, 48)',
         DARK: 'rgb(112, 88, 72)',
         DRAGON: 'rgb(112, 56, 248)', 
-        ELETRIC: 'rgb(248, 208, 48)',
+        ELECTRIC: 'rgb(248, 208, 48)',
         FAIRY: 'rgb(238, 129, 48)',
         FIGHTING: 'rgb(144, 48, 40)',
         FLYING: 'rgb(168, 144, 240)',

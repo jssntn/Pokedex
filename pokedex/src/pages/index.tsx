@@ -4,12 +4,14 @@ import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import { Pokemon, pokemonCardProps } from '@/interfaces/interfaces'
 import PokemonCard from '@/components/pokemonCard/pokemonCard'
+import axios from 'axios'
+import { useEffect, useState } from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
 
 // testes componente Card
 
-const pokemon:Pokemon = {
+const pokemont:Pokemon = {
   idPokemon: 1,
   name: "Bulbasaur",
   img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
@@ -18,6 +20,33 @@ const pokemon:Pokemon = {
 }
 
 export default function Home() {
+  const axios = require('axios').default;
+
+  const [pokemon, setPokemon] = useState<Pokemon[]>([]);
+
+  const fetchPokemons = async () => {  //Função que faz a requisição para a API e armazena as informações dos pokemons em um useState
+    
+    const { data } = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=150'); //Retorna um JSON {name, url}
+    
+    const pokemonUrls = data.results.map((pokemonData: any) => pokemonData.url); //Armazena todas as urls em um array
+    const responses = await Promise.all(pokemonUrls.map((url: string) => axios.get(url))); //Faz uma requisição para cada url e armazena um JSON com mais informações em um array
+
+    const newPokemon = responses.map((response: any) => ({
+      idPokemon: response.data.id as number,
+      name: response.data.name as string,
+      types: response.data.types.map((type: any) => type.type.name.toUpperCase() ) as string[],
+      img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'+response.data.id+'.png',
+      isFavorite: false,
+    }));
+
+    setPokemon(newPokemon); //Guardando no usesState
+  }
+
+
+  useEffect(() => {
+    fetchPokemons();
+  }); 
+
   return (
     <div className={styles.wrapper}>
 
@@ -32,8 +61,8 @@ export default function Home() {
       <h1>Pokedex</h1>
       <main>
         <div className={styles.cards}>
-          {[...Array(27)].map((_, i) => (
-            <PokemonCard key={i} pokemon={pokemon} />
+          {pokemon.map((poke) => (
+            <PokemonCard  pokemon={poke} />
           ))}
         </div>
       </main>
