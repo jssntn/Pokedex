@@ -1,6 +1,9 @@
 import {Pokemon, pokemonCardProps} from '@/interfaces/interfaces'
 import styles from './pokemonCard.module.css'
 import Image from 'next/image'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
 
 export default function PokemonCard(props:pokemonCardProps){
 
@@ -40,6 +43,8 @@ export default function PokemonCard(props:pokemonCardProps){
                 {props.pokemon.types.slice(0,3).map(type =><p><span style={{ backgroundColor:typeBackground[type]}}>{type}</span></p>)}
             </div>
             <img className={props.pokemon.idPokemon==1?styles.pokeImg1 : styles.pokeImg} src={props.pokemon.img} alt={props.pokemon.name + "image"}/>
+            {props.pokemon.isFavorite? <FontAwesomeIcon className={styles.favIcon} icon={faStar} style={{color:"yellow", display:"none"}}/>: <FontAwesomeIcon className={styles.favIcon} icon={farStar} style={{color:"yellow", display:"none"}} />}
+
         </div>
     )
 }

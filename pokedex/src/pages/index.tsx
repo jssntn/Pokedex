@@ -14,7 +14,7 @@ const pokemon:Pokemon = {
   name: "Bulbasaur",
   img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
   types: ["GRASS", "POISON"],
-  isFavorite: false
+  isFavorite: true
 }
 
 export default function Home() {
