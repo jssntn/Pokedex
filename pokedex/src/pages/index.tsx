@@ -6,6 +6,7 @@ import { Pokemon, pokemonCardProps } from '@/interfaces/interfaces'
 import PokemonCard from '@/components/pokemonCard/pokemonCard'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
+import Login from '@/components/loginModal/login'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -49,7 +50,7 @@ export default function Home() {
 
   return (
     <div className={styles.wrapper}>
-
+      <Login></Login>
       <img className={styles.logo} src="/img/logo.svg" alt="logo.svg" />
 
       <div className={styles.search}>
@@ -69,6 +70,7 @@ export default function Home() {
       <footer>
         <p>Com 💛 Info Jr UFBA 2022</p>
       </footer>
+
     </div>
   );
 }

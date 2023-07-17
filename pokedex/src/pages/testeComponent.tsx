@@ -6,7 +6,6 @@ export default function login(){
     return(
         <div className={styles.wrapper}>
             <Login></Login>
-            <Register></Register>
         </div>
     )
 }
