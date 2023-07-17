@@ -1,47 +1,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Dancing+Script:wght@400;500;700&family=Dela+Gothic+One&family=Josefin+Sans:wght@600&family=Lobster&family=Oooh+Baby&family=Overpass:wght@400;500&family=Righteous&family=Roboto:wght@400;500;700;900&display=swap');
 
+
 .modal{
-    width: 50%;
-    max-width:480px;
+    display: flex;
+    flex-direction: column;
+    width: 30%;
     height: 50%;
-    max-height: 460px;
+    max-width:480px;
+    max-height: 430px;
     min-width: 350px;
     min-height: 320px;
 }
+
 .header{
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    width: 100%;
+    align-items: center;
     height: 25%;
     background-color: red;
     border-radius: 7vh;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
 }
-
 .modalBody{
-    padding: 3em 0;
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
+    justify-content: center;
     align-items: center;
-    width: 100%;
+    height: 75%;
     border-radius: 7vh;
     border-top-right-radius: 0;
     border-top-left-radius: 0;
     background-color: beige;
 }
 
-
-.modalBody p{
-    font-size: 0.8em;
-    margin: 1em 0;
-    /* color: red; */
-    font-weight: 800;
-}
-    
 .modalBody input{
     width: 45%;
     height: 2.5em;
@@ -69,13 +61,13 @@
 
 .modalBody button{
     border: none;
-    width: 25%;
+    width: 35%;
     height: 2.5rem;
     background-color: red;
     color: beige;
     border-radius: 1em;
     font-weight: 800;
-    margin-top: 1em;
+    margin-top: 1.3em;
     font-family: 'Dela Gothic One', cursive;
 }
 
@@ -85,8 +77,11 @@
     cursor: pointer;
 }
 
+.modalBody p{
+    font-size: 1em;
+    margin: 1em 0 0 0;
+}
+
 .modalBody a{
     color: red;
 }
-
-
