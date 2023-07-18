@@ -1,27 +1,31 @@
 import styles from "@/components/loginModal/login.module.css"
+import Register from "../singUpModal/singUp";
+import { useState} from "react";
 
 export default function Login(){
+    const [visibility, setVisibility] = useState<boolean>(true);
+
+    const toggleVisibility = () => {
+        setVisibility(!visibility);
+    }
+
     return (
             <div className={styles.overlay}>
-                <div className={styles.modal}>
+                {visibility ? <div className={styles.modal}>
                     <div className={styles.header}>
                         <img src="/img/whiteLogo.svg" alt="" />
                     </div>
                     <div className={styles.modalBody}>
-                        {/* <h2>Login</h2> */}
                         <input type="text" placeholder="Usuário" />
                         <input type="password" placeholder="Senha" />
                         <button>Login</button>
 
                         <p>ou</p>
-                        <a href="">Cadastre-se</a>
-                        {/* <h2>Cadastre-se</h2> */}
-                        {/* <input type="text" placeholder="Nome completo" />
-                        <input type="text" placeholder="Usuário" />
-                        <input type="password" placeholder="Senha" />
-                        <button>Cadastre-se</button> */}
+                        <a onClick={toggleVisibility}>Cadastre-se</a>
+                        
                     </div>
-                </div>
+                </div> : <Register setVisibility={setVisibility}></Register>
+                 }
             </div>
     )
 }

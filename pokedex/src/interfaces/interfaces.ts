@@ -9,3 +9,7 @@ export interface Pokemon {
 export interface pokemonCardProps{
     pokemon: Pokemon
 }
+
+export interface registerProps{
+  setVisibility: (visibility: boolean) => void;
+}

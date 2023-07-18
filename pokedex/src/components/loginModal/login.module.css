@@ -103,6 +103,11 @@
 
 .modalBody a{
     color: red;
+    text-decoration: underline;
+}
+.modalBody a:hover{
+    color: #350A06;
+    cursor: pointer;
 }
 
 

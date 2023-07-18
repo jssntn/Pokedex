@@ -7,6 +7,7 @@ import PokemonCard from '@/components/pokemonCard/pokemonCard'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import Login from '@/components/loginModal/login'
+import Register from '@/components/singUpModal/singUp'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -24,10 +25,13 @@ export default function Home() {
   const axios = require('axios').default;
 
   const [pokemon, setPokemon] = useState<Pokemon[]>([]);
+  const [loginModal, setLoginModal] = useState<boolean>(false);
+  const [singUpModal, setSingUpModal] = useState<boolean>(false);
+
 
   const fetchPokemons = async () => {  //Função que faz a requisição para a API e armazena as informações dos pokemons em um useState
     
-    const { data } = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=150'); //Retorna um JSON {name, url}
+    const { data } = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=153'); //Retorna um JSON {name, url}
     
     const pokemonUrls = data.results.map((pokemonData: any) => pokemonData.url); //Armazena todas as urls em um array
     const responses = await Promise.all(pokemonUrls.map((url: string) => axios.get(url))); //Faz uma requisição para cada url e armazena um JSON com mais informações em um array
