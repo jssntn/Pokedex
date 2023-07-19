@@ -6,6 +6,22 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  idUser   Int          @id @unique @default(autoincrement())
+  name     String
+  username String       @unique
+  password String
+  pokemons favPokemon[]
+}
+
+model favPokemon {
+  idPokemon Int
+  idUser    Int
+  user      User @relation(fields: [idUser], references: [idUser])
+
+  @@id([idPokemon, idUser])
 }
