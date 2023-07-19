@@ -14,7 +14,6 @@ export default {
             if(!(await UserService.VerifyUsermame(username))){
                 return res.status(404).json({error: "user not find"});
             }
-            
             if(await Login(username, password)){
                 return res.status(200).json({message: "Login success"});
             }
