@@ -2,6 +2,8 @@ import UserService from "@/services/UserService";
 import Login from "@/services/Login";
 import {PrismaClient} from '@prisma/client';
 import { NextApiRequest, NextApiResponse } from 'next';
+import { verify } from 'jsonwebtoken';
+
 
 const prisma = new PrismaClient();
 
