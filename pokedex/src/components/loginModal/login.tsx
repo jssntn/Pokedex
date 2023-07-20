@@ -18,10 +18,12 @@ export default function Login({onLogin}:loginProps){
         setVisibility(!visibility);
     }
     
-    const handleLogin = async () =>{
+    const handleLogin = async (event:any) =>{
+        event.preventDefault();
         const data = await axios.post('http://localhost:3000/api/Login', {username: username, password:password});
         onLogin();
     }
+
 
     return (
             <div className={styles.overlay}>
@@ -29,15 +31,15 @@ export default function Login({onLogin}:loginProps){
                     <div className={styles.header}>
                         <img src="/img/whiteLogo.svg" alt="" />
                     </div>
-                    <div className={styles.modalBody}>
+                    <form onSubmit={handleLogin} className={styles.modalBody}>
                         <input type="text" value={username} onChange={e => setUsername(e.target.value)} placeholder="Usuário" />
                         <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Senha" />
-                        <button onClick={handleLogin}>Login</button>
+                        <button type="submit">Login</button>
 
                         <p>ou</p>
                         <a onClick={toggleVisibility}>Cadastre-se</a>
                         
-                    </div>
+                    </form>
                 </div> : <Register onRegister={onLogin} setVisibility={setVisibility}></Register>
                  }
             </div>

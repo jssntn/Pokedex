@@ -1,5 +1,3 @@
-import Head from 'next/head'
-import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import { Pokemon, pokemonCardProps} from '@/interfaces/interfaces'
@@ -7,17 +5,27 @@ import PokemonCard from '@/components/pokemonCard/pokemonCard'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import Login from '@/components/loginModal/login'
-import { EventEmitter } from 'events'
+import Router from 'next/router';
+
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   const [pokemon, setPokemon] = useState<Pokemon[]>([]);
   const [showLogin, setShowLogin] = useState<boolean>();
+  const [showMenu, setShowMenu] = useState<boolean>(false);
 
   const handleLogin = () => {
     setShowLogin(false)
+    setShowMenu(true)
   }
+
+  const handleLogout =async() => {
+      const res = await axios.get('/api/Sair');
+      setShowLogin(true);
+      setShowMenu(false);
+      
+    }
 
   const fetchPokemons = async () => {  //Função que faz a requisição para a API e armazena as informações dos pokemons em um useState
     
@@ -47,6 +55,7 @@ export default function Home() {
       const res = await fetch('/api/auth')
       const data = await res.json()
       setShowLogin(!data.isAuthenticated)
+      setShowMenu(data.isAuthenticated)
     }
     checkAuth()
   }, [])
@@ -54,6 +63,18 @@ export default function Home() {
 
   return (
     <div className={styles.wrapper}>
+      {showMenu && <div className={styles.logoutHeader}>
+          <ul>
+            <li>
+              <a href="">My Pokemons</a>
+            </li>
+            <li>
+              <a onClick={handleLogout}>
+                Logout
+              </a>
+            </li>
+          </ul>
+        </div>}
       {showLogin && <Login onLogin={handleLogin}></Login>}
       <img className={styles.logo} src="/img/logo.svg" alt="logo.svg" />
 
