@@ -1,3 +1,4 @@
+
 export interface Pokemon {
     idPokemon: Number,
     name: string,
@@ -13,3 +14,8 @@ export interface pokemonCardProps{
 export interface registerProps{
   setVisibility: (visibility: boolean) => void;
 }
+
+export interface loginProps{
+  onLogin:()=>void;
+}
+

@@ -3,6 +3,7 @@ import Login from "@/services/Login";
 import {PrismaClient} from '@prisma/client';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { verify } from 'jsonwebtoken';
+import cookie from 'cookie';
 
 
 const prisma = new PrismaClient();
@@ -16,7 +17,17 @@ export default {
             if(!(await UserService.VerifyUsermame(username))){
                 return res.status(404).json({error: "user not find"});
             }
-            if(await Login(username, password)){
+
+            const jwt = await Login(username, password);
+
+            if(jwt){
+                res.setHeader('Set-Cookie', cookie.serialize('auth', jwt, {
+                    httpOnly: true,
+                    secure: process.env.NODE_ENV !== 'development',
+                    sameSite: 'strict',
+                    maxAge: 3600,
+                    path: '/'
+                }));
                 return res.status(200).json({message: "Login success"});
             }
                

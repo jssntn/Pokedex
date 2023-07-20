@@ -1,12 +1,26 @@
 import styles from "@/components/loginModal/login.module.css"
 import Register from "../singUpModal/singUp";
 import { useState} from "react";
+import { EventEmitter } from 'events'
+import axios from "axios";
+import { loginProps } from "@/interfaces/interfaces";
 
-export default function Login(){
+
+
+export default function Login({onLogin}:loginProps){
+    const axios = require('axios').default;
+
     const [visibility, setVisibility] = useState<boolean>(true);
+    const [username, setUsername] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
 
     const toggleVisibility = () => {
         setVisibility(!visibility);
+    }
+    
+    const handleLogin = async () =>{
+        const data = await axios.post('http://localhost:3000/api/Login', {username: username, password:password});
+        onLogin();
     }
 
     return (
@@ -16,9 +30,9 @@ export default function Login(){
                         <img src="/img/whiteLogo.svg" alt="" />
                     </div>
                     <div className={styles.modalBody}>
-                        <input type="text" placeholder="Usuário" />
-                        <input type="password" placeholder="Senha" />
-                        <button>Login</button>
+                        <input type="text" value={username} onChange={e => setUsername(e.target.value)} placeholder="Usuário" />
+                        <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Senha" />
+                        <button onClick={handleLogin}>Login</button>
 
                         <p>ou</p>
                         <a onClick={toggleVisibility}>Cadastre-se</a>

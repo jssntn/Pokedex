@@ -2,32 +2,22 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
-import { Pokemon, pokemonCardProps } from '@/interfaces/interfaces'
+import { Pokemon, pokemonCardProps} from '@/interfaces/interfaces'
 import PokemonCard from '@/components/pokemonCard/pokemonCard'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import Login from '@/components/loginModal/login'
-import Register from '@/components/singUpModal/singUp'
+import { EventEmitter } from 'events'
 
 const inter = Inter({ subsets: ['latin'] })
 
-// testes componente Card
-
-const pokemont:Pokemon = {
-  idPokemon: 1,
-  name: "Bulbasaur",
-  img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
-  types: ["GRASS", "POISON"],
-  isFavorite: true
-}
-
 export default function Home() {
-  const axios = require('axios').default;
-
   const [pokemon, setPokemon] = useState<Pokemon[]>([]);
-  const [loginModal, setLoginModal] = useState<boolean>(false);
-  const [singUpModal, setSingUpModal] = useState<boolean>(false);
+  const [showLogin, setShowLogin] = useState<boolean>();
 
+  const handleLogin = () => {
+    setShowLogin(false)
+  }
 
   const fetchPokemons = async () => {  //Função que faz a requisição para a API e armazena as informações dos pokemons em um useState
     
@@ -47,35 +37,42 @@ export default function Home() {
     setPokemon(newPokemon); //Guardando no usesState
   }
 
-
   useEffect(() => {
     fetchPokemons();
-  }); 
+  }, []);
+
+  useEffect(() => {
+    // Verifica a autenticação do usuário no lado do cliente
+    const checkAuth = async () => {
+      const res = await fetch('/api/auth')
+      const data = await res.json()
+      setShowLogin(!data.isAuthenticated)
+    }
+    checkAuth()
+  }, [])
+
 
   return (
     <div className={styles.wrapper}>
-      <Login></Login>
+      {showLogin && <Login onLogin={handleLogin}></Login>}
       <img className={styles.logo} src="/img/logo.svg" alt="logo.svg" />
 
       <div className={styles.search}>
-      <input className={styles.searchInput} placeholder='Pesquisar pokémon'></input>
-
-      <button className={styles.searchButton}><img src="/img/searchIcon.svg" alt="searchIcon.svg" /></button>
+        <input className={styles.searchInput} placeholder='Pesquisar pokémon'></input>
+        <button className={styles.searchButton}><img src="/img/searchIcon.svg" alt="searchIcon.svg" /></button>
       </div>
 
       <h1>Pokedex</h1>
       <main>
         <div className={styles.cards}>
           {pokemon.map((poke) => (
-            <PokemonCard  pokemon={poke} />
+            <PokemonCard pokemon={poke} />
           ))}
         </div>
       </main>
       <footer>
         <p>Com 💛 Info Jr UFBA 2022</p>
       </footer>
-
     </div>
   );
 }
-

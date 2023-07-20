@@ -1,6 +1,8 @@
 import { PrismaClient } from '@prisma/client';
 import { compare } from 'bcrypt';
 import { sign } from 'jsonwebtoken';
+import { secret } from '@/pages/api/secret';
+
 
 export default async function Login(username: string, senha: string): Promise<string | false> {
     const prisma = new PrismaClient();
@@ -22,7 +24,8 @@ export default async function Login(username: string, senha: string): Promise<st
         });
         if (isPasswordValid) {
             // Gerar token JWT com o ID do usuário
-            const token = sign({ userId: user.idUser }, 'bf4d025d-a89d-49d2-911e-c6bef1816fa7');
+            const claims = {id: user.idUser, name: user.name };
+            const token = sign(claims, secret);
             
             return token;
         } else {
