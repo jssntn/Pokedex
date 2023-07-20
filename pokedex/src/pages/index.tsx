@@ -66,7 +66,7 @@ export default function Home() {
       {showMenu && <div className={styles.logoutHeader}>
           <ul>
             <li>
-              <a href="">My Pokemons</a>
+              <a href="/MyPokemons">My Pokemons</a>
             </li>
             <li>
               <a onClick={handleLogout}>

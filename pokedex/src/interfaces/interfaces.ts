@@ -7,6 +7,12 @@ export interface Pokemon {
     isFavorite: boolean,
   }
 
+  export interface favPokemons{
+    idUser: Number,
+    idPokemon: Number
+  }
+  
+
 export interface pokemonCardProps{
     pokemon: Pokemon
 }
