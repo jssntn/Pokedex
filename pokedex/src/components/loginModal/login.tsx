@@ -38,7 +38,7 @@ export default function Login({onLogin}:loginProps){
                         <a onClick={toggleVisibility}>Cadastre-se</a>
                         
                     </div>
-                </div> : <Register setVisibility={setVisibility}></Register>
+                </div> : <Register onRegister={onLogin} setVisibility={setVisibility}></Register>
                  }
             </div>
     )

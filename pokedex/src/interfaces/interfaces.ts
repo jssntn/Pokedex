@@ -12,7 +12,8 @@ export interface pokemonCardProps{
 }
 
 export interface registerProps{
-  setVisibility: (visibility: boolean) => void;
+  setVisibility: (visibility: boolean) => void,
+  onRegister:()=>void;
 }
 
 export interface loginProps{
