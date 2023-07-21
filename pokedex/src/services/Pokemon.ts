@@ -1,11 +1,11 @@
 import { PrismaClient, User, favPokemon } from "@prisma/client";
 import {Prisma} from '@prisma/client';
-import { favPokemons } from "@/interfaces/interfaces";
+
 
 const prisma = new PrismaClient();
 
 class PokemonServices{
-    public async addFavPokemon(favPokemon:favPokemons){
+    public async addFavPokemon(favPokemon:favPokemon){
         const pokemon = await prisma.favPokemon.create(
             {
                 data: {
@@ -16,7 +16,7 @@ class PokemonServices{
         );
     }
 
-    public async removeFavPokemon(favPokemon:favPokemons){
+    public async removeFavPokemon(favPokemon:favPokemon){
         const pokemon = await prisma.favPokemon.delete(
             {
                 where: {

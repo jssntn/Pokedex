@@ -1,13 +1,16 @@
+'use client'
 import {Pokemon, pokemonCardProps} from '@/interfaces/interfaces'
 import styles from './pokemonCard.module.css'
 import Image from 'next/image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
+import { useState } from 'react';
+import axios from 'axios';
 
 export default function PokemonCard(props:pokemonCardProps){
 
-    
+    const [favIcon, setFavicon] = useState<boolean>(false);
     const typeBackground:Record<string,string> = {
         GRASS: 'rgb(120, 200, 80)',
         FIRE: 'rgb(240, 80, 48)',
@@ -36,6 +39,15 @@ export default function PokemonCard(props:pokemonCardProps){
         return rgba;
     };
 
+    const handleFavorite = async() =>{
+            const response = await axios.post('http://localhost:3000/api/Pokemon', {idPokemon:props.pokemon.idPokemon});
+    };
+
+    const handleUnfavorite = async() =>{
+        const response = await axios.put('http://localhost:3000/api/Pokemon', {idPokemon:props.pokemon.idPokemon});
+    };
+
+
     return (
         <div style={{backgroundColor:backgroundColor()}} className={styles.Card}>
             <div className={styles.pokeInfo}>
@@ -43,7 +55,7 @@ export default function PokemonCard(props:pokemonCardProps){
                 {props.pokemon.types.slice(0,3).map(type =><p><span style={{ backgroundColor:typeBackground[type]}}>{type}</span></p>)}
             </div>
             <img className={props.pokemon.idPokemon==1?styles.pokeImg1 : styles.pokeImg} src={props.pokemon.img} alt={props.pokemon.name + "image"}/>
-            {props.pokemon.isFavorite? <FontAwesomeIcon className={styles.favIcon} icon={faStar} style={{color:"yellow", display:"none"}}/>: <FontAwesomeIcon className={styles.favIcon} icon={farStar} style={{color:"yellow", display:"none"}} />}
+            {props.pokemon.isFavorite? <FontAwesomeIcon onClick={handleUnfavorite} className={styles.favIcon} icon={faStar} style={{color:"yellow", display:"none"}}/>: <FontAwesomeIcon onClick={handleFavorite} className={styles.favIcon} icon={farStar} style={{color:"yellow", display:"none"}} />}
 
         </div>
     )
