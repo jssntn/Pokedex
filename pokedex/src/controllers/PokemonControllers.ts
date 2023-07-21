@@ -39,6 +39,20 @@ export default {
         } catch (err) {
             res.status(401).json({ message: "Not authorized" });
         }
+    },
+
+    async getFavPokemons(req: NextApiRequest, res: NextApiResponse) {
+        const cookies = cookie.parse(req.headers.cookie || '');
+        const token = cookies.auth;
+        try{
+            const decoded = jwt.verify(token, secret) as UserPayload;
+            const userId = decoded.id;
+            const favPokemon = await PokemonServices.getFavPokemons(Number(userId));
+            return res.status(200).json(favPokemon);
+        }catch(error){
+            return res.status(500).json({message: "Erro ao buscar Pokémon"});
+        }
+
     }
     
     

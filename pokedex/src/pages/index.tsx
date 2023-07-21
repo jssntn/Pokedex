@@ -1,6 +1,6 @@
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
-import { Pokemon, pokemonCardProps} from '@/interfaces/interfaces'
+import { Pokemon, pokemonCardProps, favPokemon} from '@/interfaces/interfaces'
 import PokemonCard from '@/components/pokemonCard/pokemonCard'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
@@ -44,21 +44,42 @@ export default function Home() {
 
     setPokemon(newPokemon); //Guardando no usesState
   }
+  const fetchFavPokemons = async () => { //fetch dos favoritos do usuário + att o useState
+    const {data} = await axios.get('http://localhost:3000/api/Pokemon');
+    const idFavPokemons:number[] = data.map((pokemon:favPokemon) => pokemon.idPokemon as number);
+    const newPokemon = pokemon.map((pokemon: Pokemon) => {
+      if (idFavPokemons.includes(pokemon.idPokemon as number)) {
+        pokemon.isFavorite = true;
+        return pokemon;
+      } else {
+        return pokemon;
+      }
+    });
+    setPokemon(newPokemon);
+    
+  }
 
   useEffect(() => {
     fetchPokemons();
+    checkAuth();
+  
   }, []);
 
   useEffect(() => {
-    // Verifica a autenticação do usuário no lado do cliente
-    const checkAuth = async () => {
+    if(pokemon.length>0){
+      fetchFavPokemons();
+    }
+  }, [pokemon]);
+
+ 
+
+const checkAuth = async () => {
       const res = await fetch('/api/auth')
       const data = await res.json()
       setShowLogin(!data.isAuthenticated)
       setShowMenu(data.isAuthenticated)
     }
-    checkAuth()
-  }, [])
+  
 
 
   return (
