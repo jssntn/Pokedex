@@ -38,7 +38,7 @@ export default function MyPokemons(){
         const {data} = await axios.get('http://localhost:3000/api/Pokemon');
         const idFavPokemons:number[] = data.map((pokemon:favPokemon) => pokemon.idPokemon as number);
         const newPokemon = pokemon.map((pokemon: Pokemon) => {
-          if (idFavPokemons.includes(pokemon.idPokemon as number)) {
+          if (pokemon!==undefined && idFavPokemons.includes((pokemon).idPokemon as number)) {
             pokemon.isFavorite = true;
             return pokemon;
           }
@@ -75,18 +75,19 @@ export default function MyPokemons(){
                 <div className={styles.header}>
                     <Menu onLogout={handleLogout}></Menu>
                     <img className={styles.logo} onClick={redirectHome} src="/img/logo.svg" alt="logo.svg" />
+                    
+        
+                    </div>
                     <div className={styles.title}>
                        <h1>Pokedex</h1>
-                       <FontAwesomeIcon  className={styles.favIcon} icon={faStar} style={{color:"yellow",width: '40px',height: '20px'}}/>
+                       <FontAwesomeIcon  className={styles.favIcon} icon={faStar} style={{color:"yellow",width: '30px',height: '30px'}}/>
                     </div>
-                    <div className={styles.card}>
                     <div className={styles.cards}>
+                
                     {pokemon.map((poke) => (
-                        <PokemonCard pokemon={poke} />
+                        poke!==undefined && poke.isFavorite && <PokemonCard pokemon={poke} />
                      ))
                     }
-        </div>
-                    </div>
                 </div>
             </div>
         

@@ -55,6 +55,7 @@
     border-bottom-left-radius: 0;
     cursor: pointer;
 }
+
 .cards{
     display: flex;
     flex-wrap: wrap;

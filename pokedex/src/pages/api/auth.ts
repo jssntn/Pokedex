@@ -13,4 +13,5 @@ export default async function handler(
   // Verifica se o cookie 'auth' é válido
   const isAuthenticated = !!auth
   return res.status(200).json(isAuthenticated)
+  
 }

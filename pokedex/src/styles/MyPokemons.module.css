@@ -21,9 +21,12 @@
     border-radius: 100%;
 }
 
+.logo:hover{
+    cursor: pointer;
+}
 .title{
     font-size: 1.5em;
-    margin-top:7vh;
+    margin-top:10vh;
     width:55%;
     display: flex;
     justify-content: flex-start;
@@ -31,9 +34,15 @@
 }
 
 .cards{
-    width:50%;
+    margin-top:3%;
+    width:55%;
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
+    gap:2%;
+}
+
+.cards *{
+    margin-bottom:2%;
 }
 
 
