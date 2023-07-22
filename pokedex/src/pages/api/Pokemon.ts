@@ -5,9 +5,14 @@ import axios from "axios";
 
 export default async function handler (req: NextApiRequest, res: NextApiResponse){
     const axios = require('axios').default;
-    const auth = await axios.get("http://localhost:3000/api/auth");
-    console.log(auth);
-    if(auth)
+    const cookies = req.headers.cookie;
+    const { data } = await axios.get('http://localhost:3000/api/auth', {
+        headers: {
+            Cookie: cookies,
+        },
+    });
+    
+    if(data)
     { 
         switch(req.method){
             case 'POST':
@@ -25,7 +30,5 @@ export default async function handler (req: NextApiRequest, res: NextApiResponse
 
         }
     }
-    else{
-        res.status(401).json({message: "Not authorized"});
-    }
+    
 }

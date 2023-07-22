@@ -76,8 +76,8 @@ export default function Home() {
 const checkAuth = async () => {
       const res = await fetch('/api/auth')
       const data = await res.json()
-      setShowLogin(!data.isAuthenticated)
-      setShowMenu(data.isAuthenticated)
+      setShowLogin(!data)
+      setShowMenu(data)
     }
   
 
