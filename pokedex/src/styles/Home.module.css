@@ -5,6 +5,10 @@
     align-items: center;
     gap:5vh;
 }
+
+.conditionalMargin{
+    margin-top:7vh;
+}
 .wrapper h1{
     width: 53.7vw;
     margin:0;

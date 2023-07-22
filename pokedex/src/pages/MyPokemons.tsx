@@ -13,8 +13,21 @@ export default function MyPokemons(){
 
     
     const [pokemon, setPokemon] = useState<Pokemon[]>([]);
+    const [authorized, setAuthorized] = useState<boolean>(false);
+    const [loading, setLoading] = useState(true);
 
     const router = useRouter();
+
+    
+    const redirectHome = () =>{
+      router.push('/');
+  }
+    const checkAuth = async () => {
+      const res = await fetch('/api/auth')
+      const data = await res.json()
+      setAuthorized(data)
+      setLoading(false)
+    }
 
     const fetchPokemons = async () => {  //Função que faz a requisição para a API e armazena as informações dos pokemons em um useState
     
@@ -54,11 +67,8 @@ export default function MyPokemons(){
         
     }
 
-    const redirectHome = () =>{
-        router.push('/');
-    }
-
     useEffect(() => {
+        
         fetchPokemons();
         console.log(pokemon);
       }, []);
@@ -69,27 +79,32 @@ export default function MyPokemons(){
         }
       }, [pokemon]);
 
+      useEffect(() => {
+        checkAuth();
+        if (!loading && !authorized) {
+          redirectHome();
+        }
+      }, [loading, authorized]);
+      
+
 
     return(
-            <div className={styles.wrapper}>
-                <div className={styles.header}>
-                    <Menu onLogout={handleLogout}></Menu>
-                    <img className={styles.logo} onClick={redirectHome} src="/img/logo.svg" alt="logo.svg" />
-                    
-        
-                    </div>
-                    <div className={styles.title}>
-                       <h1>Pokedex</h1>
-                       <FontAwesomeIcon  className={styles.favIcon} icon={faStar} style={{color:"yellow",width: '30px',height: '30px'}}/>
-                    </div>
-                    <div className={styles.cards}>
-                
-                    {pokemon.map((poke) => (
-                        poke!==undefined && poke.isFavorite && <PokemonCard pokemon={poke} />
-                     ))
-                    }
-                </div>
-            </div>
+          
+              <div className={styles.wrapper}>
+                  <div className={styles.header}>
+                      <Menu onLogout={handleLogout}></Menu>
+                      <img className={styles.logo} onClick={redirectHome} src="/img/logo.svg" alt="logo.svg" />
+                  </div>
+                  <div className={styles.title}>
+                      <h1>Pokedex</h1>
+                      <FontAwesomeIcon  className={styles.favIcon} icon={faStar} style={{color:"yellow",width: '30px',height: '30px'}}/>
+                  </div>
+                  <div className={styles.cards}>
+                      {pokemon.map((poke) => (
+                          poke!==undefined && poke.isFavorite && <PokemonCard pokemon={poke} />
+                      ))}
+                  </div>
+              </div> 
         
     )
 }

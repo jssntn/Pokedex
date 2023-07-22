@@ -88,6 +88,7 @@ export default function Home() {
 
   return (
     <div className={styles.wrapper}>
+      {!showMenu && <div className={styles.conditionalMargin}></div>}
       {showMenu && <Menu onLogout={handleLogout}></Menu> }
       {showLogin && <Login onLogin={handleLogin}></Login>}
       <img className={styles.logo} src="/img/logo.svg" alt="logo.svg" />
