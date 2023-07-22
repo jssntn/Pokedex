@@ -12,10 +12,16 @@ import Menu from '@/components/menu/menu'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+
+  // UseStates
   const [pokemon, setPokemon] = useState<Pokemon[]>([]);
   const [showLogin, setShowLogin] = useState<boolean>();
   const [showMenu, setShowMenu] = useState<boolean>(false);
+  const [search, setSearch] = useState<string>('');
+  const [onSearch, setOnSearch] = useState(false);
+  const [searchPokemon, setSearchPokemon] = useState<Pokemon[]>([]);
 
+  //Funções
   const handleLogin = () => {
     setShowLogin(false);
     setShowMenu(true);
@@ -28,14 +34,14 @@ export default function Home() {
       setShowLogin(true);
       setShowMenu(false);
       
-    }
+  }
 
-    const checkAuth = async () => {
+  const checkAuth = async () => {
       const res = await fetch('/api/auth')
       const data = await res.json()
       setShowLogin(!data)
       setShowMenu(data)
-    }
+  }
 
   const fetchPokemons = async () => {  //Função que faz a requisição para a API e armazena as informações dos pokemons em um useState
     
@@ -54,6 +60,7 @@ export default function Home() {
 
     setPokemon(newPokemon); //Guardando no usesState
   }
+
   const fetchFavPokemons = async () => { //fetch dos favoritos do usuário + att o useState
     const {data} = await axios.get('http://localhost:3000/api/Pokemon');
     const idFavPokemons:number[] = data.map((pokemon:favPokemon) => pokemon.idPokemon as number);
@@ -69,6 +76,7 @@ export default function Home() {
     
   }
 
+  //UseEffects
   useEffect(() => {
     fetchPokemons();
     checkAuth();
@@ -81,10 +89,18 @@ export default function Home() {
     }
   }, [pokemon]);
 
- 
+ //Pokemon search
 
+ const Search = (query: string) => {
+  const filteredPokemon = pokemon.filter((pokemon) => {
+    return pokemon.name.toLowerCase().startsWith(query.toLowerCase())
+  });
+  if(filteredPokemon.length>0){
+    setOnSearch(true);
+    setSearchPokemon(filteredPokemon);
+  }
 
-
+}
 
   return (
     <div className={styles.wrapper}>
@@ -94,14 +110,18 @@ export default function Home() {
       <img className={styles.logo} src="/img/logo.svg" alt="logo.svg" />
 
       <div className={styles.search}>
-        <input className={styles.searchInput} placeholder='Pesquisar pokémon'></input>
-        <button className={styles.searchButton}><img src="/img/searchIcon.svg" alt="searchIcon.svg" /></button>
+        <input className={styles.searchInput} value={search} onChange={e => setSearch(e.target.value)} placeholder='Pesquisar pokémon'></input>
+        <button className={styles.searchButton} onClick={()=>Search(search)}><img src="/img/searchIcon.svg" alt="searchIcon.svg" /></button>
       </div>
 
       <h1>Pokedex</h1>
       <main>
         <div className={styles.cards}>
-          {pokemon.map((poke) => (
+          {onSearch?
+          searchPokemon.map((poke) => (
+            <PokemonCard pokemon={poke} />
+          )):
+           pokemon.map((poke) => (
             <PokemonCard pokemon={poke} />
           ))}
         </div>
