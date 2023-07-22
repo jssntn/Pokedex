@@ -1,10 +1,94 @@
+import { useState, useEffect } from 'react';
 import styles from '@/styles/MyPokemons.module.css'
+import Menu from '@/components/menu/menu'
+import axios from 'axios'
+import { useRouter } from 'next/router';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { Pokemon, favPokemon } from '@/interfaces/interfaces';
+import PokemonCard from '@/components/pokemonCard/pokemonCard';
+
+
 export default function MyPokemons(){
+
+    
+    const [pokemon, setPokemon] = useState<Pokemon[]>([]);
+
+    const router = useRouter();
+
+    const fetchPokemons = async () => {  //Função que faz a requisição para a API e armazena as informações dos pokemons em um useState
+    
+        const { data } = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=153'); //Retorna um JSON {name, url}
+        
+        const pokemonUrls = data.results.map((pokemonData: any) => pokemonData.url); //Armazena todas as urls em um array
+        const responses = await Promise.all(pokemonUrls.map((url: string) => axios.get(url))); //Faz uma requisição para cada url e armazena um JSON com mais informações em um array
+    
+        const newPokemon = responses.map((response: any) => ({
+          idPokemon: response.data.id as number,
+          name: response.data.name as string,
+          types: response.data.types.map((type: any) => type.type.name.toUpperCase() ) as string[],
+          img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'+response.data.id+'.png',
+          isFavorite: false,
+        }));
+    
+        setPokemon(newPokemon); //Guardando no usesState
+    }
+
+    const fetchFavPokemons = async () => { //fetch dos favoritos do usuário + att o useState
+        const {data} = await axios.get('http://localhost:3000/api/Pokemon');
+        const idFavPokemons:number[] = data.map((pokemon:favPokemon) => pokemon.idPokemon as number);
+        const newPokemon = pokemon.map((pokemon: Pokemon) => {
+          if (idFavPokemons.includes(pokemon.idPokemon as number)) {
+            pokemon.isFavorite = true;
+            return pokemon;
+          }
+        });
+        setPokemon(newPokemon as Pokemon[]);
+        
+    }
+
+
+    const handleLogout =async() => {
+        const res = await axios.get('/api/Sair');
+        router.push('/');
+        
+    }
+
+    const redirectHome = () =>{
+        router.push('/');
+    }
+
+    useEffect(() => {
+        fetchPokemons();
+        console.log(pokemon);
+      }, []);
+
+    useEffect(() => {
+        if(pokemon.length>0){
+          fetchFavPokemons();
+        }
+      }, [pokemon]);
+
+
     return(
-        <>
             <div className={styles.wrapper}>
-                <h1>Pokemons</h1>
+                <div className={styles.header}>
+                    <Menu onLogout={handleLogout}></Menu>
+                    <img className={styles.logo} onClick={redirectHome} src="/img/logo.svg" alt="logo.svg" />
+                    <div className={styles.title}>
+                       <h1>Pokedex</h1>
+                       <FontAwesomeIcon  className={styles.favIcon} icon={faStar} style={{color:"yellow",width: '40px',height: '20px'}}/>
+                    </div>
+                    <div className={styles.card}>
+                    <div className={styles.cards}>
+                    {pokemon.map((poke) => (
+                        <PokemonCard pokemon={poke} />
+                     ))
+                    }
+        </div>
+                    </div>
+                </div>
             </div>
-        </>
+        
     )
 }

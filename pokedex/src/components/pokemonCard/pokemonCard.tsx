@@ -40,7 +40,7 @@ export default function PokemonCard(props:pokemonCardProps){
     };
 
     const handleFavorite = async() =>{
-            const response = await axios.post('http://localhost:3000/api/Pokemon', {idPokemon:props.pokemon.idPokemon});
+        const response = await axios.post('http://localhost:3000/api/Pokemon', {idPokemon:props.pokemon.idPokemon});
             
     };
 

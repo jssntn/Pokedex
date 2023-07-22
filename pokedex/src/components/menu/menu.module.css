@@ -1,0 +1,28 @@
+.logoutHeader{
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    margin: 5vh 0;
+    
+}
+
+.logoutHeader ul{
+    width: 100%;
+    display: flex;
+    list-style: none;
+    gap:1.5em;
+    margin: 0.3em 2em;
+    justify-content: flex-end;
+}
+
+.logoutHeader ul a{
+    text-decoration: none;
+    color: #350A06;
+    font-size: 1em;
+    font-weight: 500;
+}
+
+.logoutHeader ul a:hover{
+    color: red;
+    cursor:pointer;
+}

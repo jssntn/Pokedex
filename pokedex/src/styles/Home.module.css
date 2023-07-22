@@ -4,32 +4,6 @@
     flex-direction: column;
     align-items: center;
     gap:5vh;
-    margin-top: 5vh;
-}
-
-.logoutHeader{
-    display: flex;
-    width: 100%;
-    justify-content: flex-end;
-}
-
-.logoutHeader ul{
-    display: flex;
-    list-style: none;
-    gap:1.5em;
-    margin: 0.3em 2em;
-    align-items: flex-start;
-}
-
-.logoutHeader ul a{
-    text-decoration: none;
-    color: #350A06;
-    font-size: 1em;
-    font-weight: 500;
-}
-
-.logoutHeader ul a:hover{
-    color: red;
 }
 .wrapper h1{
     width: 53.7vw;

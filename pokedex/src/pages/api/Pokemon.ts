@@ -17,12 +17,15 @@ export default async function handler (req: NextApiRequest, res: NextApiResponse
         switch(req.method){
             case 'POST':
                 await PokemonControllers.addFavPokemon(req, res);
+                res.status(200).end();
                 break;
             case 'PUT':
                 await PokemonControllers.removeFavPokemon(req, res);
+                res.status(200).end();
                 break;
             case 'GET':
                 await PokemonControllers.getFavPokemons(req, res);
+                res.status(200).end();
                 break;
             default:
                 res.status(405).end();

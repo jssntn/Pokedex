@@ -26,3 +26,7 @@ export interface loginProps{
   onLogin:()=>void;
 }
 
+export interface menuProps{
+  onLogout:()=>void;
+}
+
