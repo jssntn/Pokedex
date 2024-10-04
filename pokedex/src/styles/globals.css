@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;700&family=Dela+Gothic+One&family=Josefin+Sans:wght@600&family=Lobster&family=Oooh+Baby&family=Overpass:wght@400;500&family=PT+Sans+Caption&family=Righteous&family=Roboto:wght@400;500;700;900&display=swap');
+html, body{
+  font-size: 16px;
+  font-family: 'DM Sans', sans-serif;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+  /* overflow-y: auto; */
+}
+#__next{
+  display: inline-block;
+  height: 100vh;
+  width: 100%;
+}

@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Dancing+Script:wght@400;500;700&family=Dela+Gothic+One&family=Josefin+Sans:wght@600&family=Lobster&family=Oooh+Baby&family=Overpass:wght@400;500&family=Righteous&family=Roboto:wght@400;500;700;900&display=swap');
+
+.overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    
+  }
+.modal{
+    width: 50%;
+    max-width:480px;
+    height: 50%;
+    max-height: 460px;
+    min-width: 350px;
+    min-height: 320px;
+    z-index: 2;
+}
+.header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 25%;
+    background-color: red;
+    border-radius: 7vh;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.modalBody{
+    padding: 3em 0;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    width: 100%;
+    border-radius: 7vh;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    background-color: beige;
+}
+
+
+.modalBody p{
+    font-size: 0.8em;
+    margin: 1em 0;
+    /* color: red; */
+    font-weight: 800;
+}
+    
+.modalBody input{
+    width: 45%;
+    height: 2.5em;
+    border: none;
+    margin: 0.7em 0;
+    border-radius: 1em;
+    padding-left: 1em;
+    
+}
+
+.modalBody input:focus{
+    outline: 1px solid red;
+    font-weight: 700;
+}
+
+.modalBody input::placeholder{
+    font-size: 1.1em;
+    font-family: 'DM Sans', sans-serif;
+    
+}
+
+.modalBody input:focus::placeholder{
+    color: transparent!important;
+}
+
+.modalBody button{
+    border: none;
+    width: 25%;
+    height: 2.5rem;
+    background-color: red;
+    color: beige;
+    border-radius: 1em;
+    font-weight: 800;
+    margin-top: 1em;
+    font-family: 'Dela Gothic One', cursive;
+}
+
+.modalBody button:hover{
+    /* color: red; */
+    background-color: #A4DE02;
+    cursor: pointer;
+}
+
+.modalBody a{
+    color: red;
+    text-decoration: underline;
+}
+.modalBody a:hover{
+    color: #350A06;
+    cursor: pointer;
+}
+
+
